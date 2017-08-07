@@ -3,12 +3,15 @@
    3. Debug node => http://www.mead.io/node-debugging/
    4. Ctml Shift R => reload the page ignoring cache
    5. how to use template engine, hbs => handlebarsjs.com  - mustache.js, Riot.js, reactive.js
+   6. use middleware to override other pages
+   7. generate keystore ssh-keygen -t rsa -b 4096 -C 'chikmatthew@outlook.com'
 */
 
 const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
-
+// deploy to heroku
+const port = process.env.PORT || 3000;
 var app = express();
 
 hbs.registerPartials(__dirname + '/views/partials');
@@ -73,6 +76,7 @@ app.get('/bad', (req, res) => {
   });
 });
 
-app.listen(3000, () => {
-  console.log('Server is up to 3000');
+//deploy to heroku, must change port number as a variable
+app.listen(port, () => {
+  console.log(`Server is up to ${port}`);
 });
